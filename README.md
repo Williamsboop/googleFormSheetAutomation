@@ -211,6 +211,8 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 - **v1.0.0** — Initial programmatic response acquisition template
 
+- **v1.0.0** — Initial programmatic array parsing and display template
+
 ---
 
 ## Support
