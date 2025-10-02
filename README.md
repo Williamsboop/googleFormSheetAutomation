@@ -23,12 +23,14 @@ A collection of Google Apps Script projects for automating workflows with Google
 **Features:**
 
 - Structured data indexing system for reliable field access
+
 - Built-in test data (`FAKE_DATA`) for local development and testing
+
 - Clean, reusable architecture for form response handling
 
 ---
 
-### 2. Timeslot Automation (v2.5.0)
+### 2. Timeslot Automation (v2.6.0)
 
 **Purpose:** Complete automation system for appointment scheduling with dynamic slot management, calendar integration, and email notifications.
 
@@ -50,7 +52,7 @@ A collection of Google Apps Script projects for automating workflows with Google
 
 - `makeEvent.js` — Creates Google Calendar events with meeting details and guest invitations
 
-- `makeMail.js` — Sends notification emails to designated recipients
+- `makeMail.js` — Sends notification emails to designated recipients using Gmail API
 
 - `dailyCheck.js` — Daily maintenance script that resets available time slots
 
@@ -60,7 +62,7 @@ A collection of Google Apps Script projects for automating workflows with Google
 
 - **Calendar Integration** — Creates events with proper start/end times and sends invitations to participants
 
-- **Email Notifications** — Sends detailed meeting confirmations including participant interests
+- **High-Volume Email Notifications** — Uses Gmail API for sending detailed meeting confirmations (10,000 daily limit vs MailApp's 1,500)
 
 - **Smart Day Selection** — Generates the next 5 business days while respecting excluded dates
 
@@ -79,7 +81,6 @@ A collection of Google Apps Script projects for automating workflows with Google
 **File:** `programmaticArrayDisplay.js`
 
 **Features:**
-
 - Converts arrays into grammatically correct sentences
 - Handles proper comma placement and conjunctions
 - Used within the timeslot automation for formatting user interests
@@ -100,6 +101,7 @@ A collection of Google Apps Script projects for automating workflows with Google
    const FORM_ID = 'your-form-id';
    const RECIPIENTS = ['email1@example.com', 'email2@example.com'];
    const DEFAULT_SLOTS = ['9:00 AM - 10:00 AM', '10:00 AM - 11:00 AM', '1:00 PM - 2:00 PM'];
+   const ALIAS = 'Form Handler <your-email@domain.com>'; // For Gmail API sender
    ```
 
 4. **Set up DATA_INDEX** to match your form questions:
@@ -118,6 +120,12 @@ A collection of Google Apps Script projects for automating workflows with Google
 ### Triggers Setup
 
 For **Timeslot Automation v2**:
+
+**Enable Gmail API:**
+1. In Apps Script Editor, click on "Services" (+ icon)
+2. Find and add "Gmail API" (v1)
+
+**Set up Triggers:**
 
 1. **Form Submit Trigger:**
    - Function: `wrapper`
@@ -153,7 +161,9 @@ For **Timeslot Automation v2**:
 
 - **Excluded Dates:** Add holidays or blackout dates to the `EXCLUDED_DATES` array in `updateDays.js` using `YYYY-MM-DD` format
 
-- **Email Sender:** Configure the `name` and `from` fields in `makeMail.js` for proper email attribution
+- **Gmail API Benefits:** The switch from MailApp to Gmail API increases daily email quota from 1,500 to 10,000 for Workspace accounts
+
+- **Error Handling:** The `makeMail()` function includes try-catch blocks and 100ms delays between emails for reliability
 
 - **Automatic Cleanup:** The `clearLastYear()` function automatically deletes previous year's calendar events when run in January. Set up a monthly trigger to run this maintenance task automatically
 
@@ -166,6 +176,7 @@ For **Timeslot Automation v2**:
   - Google Sheets
   - Google Calendar
   - Gmail
+
 - Apps Script permissions for the above services
 
 ---
@@ -178,7 +189,7 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 ## Version History
 
-- **v2.5.1** — Timeslot Automation with full calendar and email integration
+- **v2.6.0** — Timeslot Automation with full calendar and email integration
 
 - **v1.0.0** — Initial programmatic response acquisition template
 
