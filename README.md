@@ -66,6 +66,8 @@ A collection of Google Apps Script projects for automating workflows with Google
 
 - **Daily Reset** — Scheduled function to refresh slot availability each day
 
+- **Automatic Calendar Cleanup** — January maintenance function that removes previous year's events (with safety checks)
+
 - **Flexible Configuration** — Easy customization of default slots, recipients, and excluded dates
 
 ---
@@ -77,6 +79,7 @@ A collection of Google Apps Script projects for automating workflows with Google
 **File:** `programmaticArrayDisplay.js`
 
 **Features:**
+
 - Converts arrays into grammatically correct sentences
 - Handles proper comma placement and conjunctions
 - Used within the timeslot automation for formatting user interests
@@ -133,6 +136,13 @@ For **Timeslot Automation v2**:
    - Type: Day timer
    - Time of day: 12am to 1am
 
+4. **Calendar Cleanup Trigger (optional):**
+   - Function: `clearLastYear`
+   - Event source: Time-driven
+   - Type: Day timer
+   - Time of day: 12am to 1am
+   - Runs only in January to delete previous year's events
+
 ---
 
 ## Usage Notes
@@ -145,7 +155,7 @@ For **Timeslot Automation v2**:
 
 - **Email Sender:** Configure the `name` and `from` fields in `makeMail.js` for proper email attribution
 
-- **Last Year Cleanup:** Use `clearLastYear()` function to delete old calendar events if needed
+- **Automatic Cleanup:** The `clearLastYear()` function automatically deletes previous year's calendar events when run in January. Set up a monthly trigger to run this maintenance task automatically
 
 ---
 
@@ -156,7 +166,6 @@ For **Timeslot Automation v2**:
   - Google Sheets
   - Google Calendar
   - Gmail
-
 - Apps Script permissions for the above services
 
 ---
@@ -169,7 +178,7 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 ## Version History
 
-- **v2.5.0** — Timeslot Automation with full calendar and email integration
+- **v2.5.1** — Timeslot Automation with full calendar and email integration
 
 - **v1.0.0** — Initial programmatic response acquisition template
 
