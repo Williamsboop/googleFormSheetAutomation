@@ -83,12 +83,19 @@ A calendar event has been made, and ${name} was invited.`
 
 function defInterests(interests) {
   interests = interests.split(',').map(element => element.trim());
-  if (interests.length > 1) {
-    return `They are interested in ${interests[0]} and ${interests[1]}.`
-  } else if (interests.length === 1) {
-    return `They are interested in ${interests[0]}.`
-  } else {
-  return ''
+  interestsLen = interests.length;
+  switch(interestsLen) {
+    case 0:
+      return "They didn't specify any interests.";
+    case 1:
+      return `They're interested in ${interests[0]}.`;
+    default:
+      let lastElm = interests.pop();
+      if (interestsLen > 2) {
+        return `They're interested in ${interests.join()},and ${lastElm}.`.replace(/,/g, ', ');
+      } else {
+        return `They're interested in ${Array.join} and ${lastElm}.`;
+    } 
   }
 }
 
@@ -107,4 +114,8 @@ function getStart_End(details) {
   const end = new Date(`${date} ${endTime}`);
 
   return { start, end };
+}
+
+function clearCal() {
+  
 }
