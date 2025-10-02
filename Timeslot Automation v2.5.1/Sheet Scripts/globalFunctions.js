@@ -123,12 +123,12 @@ function getStart_End(details) {
 }
 
 function clearLastYear() {
-    Logger.log('[ Checking Month ]')
+    Logger.log('[ Checking Month ]');
     if (new Date().getMonth() !== 0) {
-      Logger.log("[ It's not January, Terminating. ]")
+      Logger.log("[ It's not January, Terminating. ]");
       return;
     } // This should only run every year.
-    Logger.log("[ Happy New Year! ]")
+    Logger.log("[ Happy New Year! ]");
 
     let lastYear = getLastYear();
     let start = new Date(lastYear, 0, 1, 0, 0, 0); 
@@ -136,7 +136,7 @@ function clearLastYear() {
     let events = CALENDAR.getEvents(start, end);
 
     if (events.length === 0) {
-      Logger.log(`[ No Events found for ${lastYear}. ]`)
+      Logger.log(`[ No Events found for ${lastYear}. ]`);
       return;
     }
 
@@ -151,5 +151,5 @@ function clearLastYear() {
       event.deleteEvent();
       eventNum++;
     });
-  Logger.log(`[ Deleted ${eventNum} Events. ]`)
+  Logger.log(`[ Deleted ${eventNum} Events. ]`);
 }
