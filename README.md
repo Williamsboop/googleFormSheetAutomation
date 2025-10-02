@@ -30,7 +30,7 @@ A collection of Google Apps Script projects for automating workflows with Google
 
 ---
 
-### 2. Timeslot Automation (v2.6.0)
+### 2. Timeslot Automation (v2.5.0)
 
 **Purpose:** Complete automation system for appointment scheduling with dynamic slot management, calendar integration, and email notifications.
 
@@ -44,9 +44,9 @@ A collection of Google Apps Script projects for automating workflows with Google
 
 - `wrapper.js` — Main entry point that orchestrates all automation on form submission
 
-- `globalVars.js` — Central configuration for form, sheet, and calendar references
+- `globalVars.js` — Central configuration for form, sheet, calendar references, and date parsing constants
 
-- `globalFunctions.js` — Utility functions for parsing data, generating content, and managing slots
+- `globalFunctions.js` — Utility functions for parsing data, generating content, managing slots, and date conversion
 
 - `updateForm.js` — Removes booked time slots from form choices in real-time
 
@@ -54,7 +54,7 @@ A collection of Google Apps Script projects for automating workflows with Google
 
 - `makeMail.js` — Sends notification emails to designated recipients using Gmail API
 
-- `dailyCheck.js` — Daily maintenance script that resets available time slots
+- `dailyCheck.js` — Daily maintenance script that removes past appointments and resets available time slots
 
 **Key Features:**
 
@@ -66,7 +66,7 @@ A collection of Google Apps Script projects for automating workflows with Google
 
 - **Smart Day Selection** — Generates the next 5 business days while respecting excluded dates
 
-- **Daily Reset** — Scheduled function to refresh slot availability each day
+- **Intelligent Daily Cleanup** — Automatically removes past appointments from the sheet and empty rows, then resets slot availability
 
 - **Automatic Calendar Cleanup** — January maintenance function that removes previous year's events (with safety checks)
 
@@ -102,6 +102,23 @@ A collection of Google Apps Script projects for automating workflows with Google
    const RECIPIENTS = ['email1@example.com', 'email2@example.com'];
    const DEFAULT_SLOTS = ['9:00 AM - 10:00 AM', '10:00 AM - 11:00 AM', '1:00 PM - 2:00 PM'];
    const ALIAS = 'Form Handler <your-email@domain.com>'; // For Gmail API sender
+   const DATE_COL = 3; // Column index containing appointment dates (1-based)
+   
+   // Month name to number mapping for date parsing
+   const MONTHS = {
+     'January': 1,
+     'February': 2,
+     'March': 3,
+     'April': 4,
+     'May': 5,
+     'June': 6,
+     'July': 7,
+     'August': 8,
+     'September': 9,
+     'October': 10,
+     'November': 11,
+     'December': 12
+   };
    ```
 
 4. **Set up DATA_INDEX** to match your form questions:
@@ -189,7 +206,7 @@ MIT License - See [LICENSE](LICENSE) file for details
 
 ## Version History
 
-- **v2.6.0** — Timeslot Automation with full calendar and email integration
+- **v2.7.0** — Timeslot Automation with full calendar and email integration
 
 - **v1.0.0** — Initial programmatic response acquisition template
 

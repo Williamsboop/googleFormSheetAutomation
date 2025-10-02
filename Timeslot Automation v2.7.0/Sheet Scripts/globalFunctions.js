@@ -42,6 +42,11 @@ function dailyChoices(new_slots, list){
   return new_slots.map(slot => list.createChoice(slot));
 }
 
+function convertToDate(str) {
+  let d = str.match(/([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4})/);
+  return new Date(`${d[3]}-${MONTHS[d[1]]}-${d[2]}`);
+}
+
 // EVENT & EMAIL FUNCTIONS //
 
 function defSubject(details) {
