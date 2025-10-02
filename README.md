@@ -30,7 +30,7 @@ A collection of Google Apps Script projects for automating workflows with Google
 
 ---
 
-### 2. Timeslot Automation (v2.5.0)
+### 2. Timeslot Automation (v2.7.0)
 
 **Purpose:** Complete automation system for appointment scheduling with dynamic slot management, calendar integration, and email notifications.
 
