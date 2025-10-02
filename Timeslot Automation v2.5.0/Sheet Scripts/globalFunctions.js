@@ -26,6 +26,12 @@ function getChoices(list, slot) {
          .filter(choice => choice.getValue() !== slot);
 }
 
+function getLastYear() {
+  let today = new Date();
+  let lastYear =  today.getFullYear() - 1;
+  return lastYear;
+}
+
 // DAILY RESET FUNCTIONS //
 
 function dailySlots(slots, day){
@@ -116,6 +122,18 @@ function getStart_End(details) {
   return { start, end };
 }
 
-function clearCal() {
-  
+function clearLastYear() {
+    let lastYear = getLastYear();
+    let start = new Date(lastYear, 0, 1, 0, 0, 0); 
+    let end = new Date(lastYear, 11, 31, 23, 59, 59);
+    let events = CALENDAR.getEvents(start, end);
+    events.forEach( event => {
+      let eventDate = Utilities.formatDate(
+        event.getStartTime(),
+        TIMEZONE,
+        "EEEE, MMMM dd, yyyy hh:mm a",
+      );
+      Logger.log(`[ Deleting Event on ${eventDate} ]`);
+      event.deleteEvent();
+    });
 }
