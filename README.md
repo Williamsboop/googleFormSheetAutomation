@@ -155,7 +155,7 @@ For **Timeslot Automation v2**:
    - Type: Day timer
    - Time of day: 12am to 1am (or your preference)
 
-3. **Update Days Trigger (optional):**
+3. **Update Days Trigger:**
    - Function: `updateDays`
    - Event source: Time-driven
    - Type: Day timer
@@ -164,7 +164,8 @@ For **Timeslot Automation v2**:
 4. **Calendar Cleanup Trigger (optional):**
    - Function: `clearLastYear`
    - Event source: Time-driven
-   - Type: Day timer
+   - Type: Month timer
+   - Day: 1st
    - Time of day: 12am to 1am
    - Runs only in January to delete previous year's events
 
